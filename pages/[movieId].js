@@ -11,6 +11,9 @@ import { default as homeStyles } from "../styles/Home.module.css"
 import styles from "../styles/MovieDetails.module.css"
 const Movie = ({ movie, cast, crew }) => {
   const router = useRouter()
+
+  if (router.isFallback) return null
+
   const { movieId } = router.query
   const actors = cast
     ?.filter(person => person.known_for_department === "Acting")
