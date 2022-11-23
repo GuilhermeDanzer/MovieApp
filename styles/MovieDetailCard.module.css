@@ -1,0 +1,70 @@
+.cardWrapper {
+  flex: 1;
+  height: 500px;
+  position: relative;
+  border-radius: 16px;
+  display: flex;
+}
+.movieCardInfo {
+  flex: 3;
+}
+.divImg {
+  height: 100%;
+  width: 300px;
+}
+.img {
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.cardBackground {
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  position: absolute;
+  border-radius: 16px;
+  background-size: cover;
+  filter: brightness(40%);
+}
+
+.card {
+  word-break: break-word;
+  position: relative;
+  width: 100%;
+  padding: 35px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background: rgb(255, 255, 255, 0.2);
+
+  border-radius: 16px;
+  z-index: 3;
+  gap: 55px;
+}
+.card::before {
+  background-image: var(--background);
+  filter: blur(8px) brightness(40%);
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  content: "";
+  z-index: -1;
+}
+
+.movieCardInfo h1,
+.movieCardInfo p,
+.movieCardInfo span {
+  color: var(--white);
+}
+
+.lesserInfoDiv {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  flex-wrap: wrap;
+}
