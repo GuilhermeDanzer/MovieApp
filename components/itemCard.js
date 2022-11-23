@@ -6,7 +6,6 @@ const ItemCard = (
   { title, subTitle, buttonAction = "", buttonText, photoPath },
   ref
 ) => {
-  console.log(title)
   const addDefaultSrc = ev => {
     ev.target.src = "/no-image.png"
     ev.target.style.width = "200px"
@@ -26,11 +25,13 @@ const ItemCard = (
       <div className={styles.cardFooter}>
         <p className={styles.title}>{title}</p>
         <span className={styles.genres}>{subTitle}</span>
-        <Link href={buttonAction}>
-          <div className={styles.divButton}>
-            <button className={styles.button}>{buttonText}</button>
-          </div>
-        </Link>
+        {buttonText ? (
+          <Link href={buttonAction}>
+            <div className={styles.divButton}>
+              <button className={styles.button}>{buttonText}</button>
+            </div>
+          </Link>
+        ) : null}
       </div>
     </div>
   )

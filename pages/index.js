@@ -65,7 +65,6 @@ export default function Home({ propsMovies, current_page, max_page }) {
     setMoviesEndpoint(moviesEndpoint => value)
 
     const { movies: fetchedMovies } = await getMovies(value, 1)
-    console.log(fetchedMovies)
 
     setMovies(movies => (fetchedMovies ? fetchedMovies : []))
     setCurrentPage(currentPage => 1)

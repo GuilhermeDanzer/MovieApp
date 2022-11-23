@@ -33,7 +33,6 @@ const Movie = ({ movie, cast, crew }) => {
                 subTitle={actor.character}
                 photoPath={actor.profile_path}
                 key={actor.id}
-                buttonText="See More"
               />
             ))}
           </div>
@@ -46,22 +45,6 @@ const Movie = ({ movie, cast, crew }) => {
 export default Movie
 
 export async function getStaticPaths() {
-  const moviesEndpoints = [
-    "upcoming",
-    "popular",
-    "latest",
-    "now_playing",
-    "top_rated",
-  ]
-
-  // const paths = moviesEndpoints.map(async movieEndpoint => {
-  //   const { movies } = await getMovies(movieEndpoint)
-  //   movies
-  //     .map(movie => {
-  //       return { params: { movieId: movie.id.toString() } }
-  //     })
-  //     .then(res => console.log("res", res))
-  // })
   const { movies } = await getMovies("upcoming")
   const paths = movies.map(movie => {
     return { params: { movieId: movie.id.toString() } }
