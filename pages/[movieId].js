@@ -48,25 +48,45 @@ const Movie = ({ movie, cast, crew }) => {
 
 export default Movie
 
-export async function getStaticPaths() {
-  const { movies } = await getMovies('upcoming')
-  const paths = movies.map(movie => {
-    return { params: { movieId: movie.id.toString() } }
-  })
+// ...
 
-  return {
-    paths,
-    fallback: true,
+export async function getStaticPaths() {
+  try {
+    const { movies } = await getMovies('upcoming')
+    const paths = movies.map(movie => {
+      return { params: { movieId: movie.id.toString() } }
+    })
+
+    return {
+      paths,
+      fallback: true,
+    }
+  } catch (error) {
+    console.error('Error fetching movie paths:', error)
+    return {
+      paths: [],
+      fallback: true,
+    }
   }
 }
 
-// `getStaticPaths` requires using `getStaticProps`
 export async function getStaticProps(context) {
-  const { movieId } = context.params
-  const { movie } = await getMovie(movieId)
-  const { crew, cast } = await getMoviesCredit(movieId)
-  return {
-    // Passed to the page component as props
-    props: { movie, crew, cast },
+  try {
+    const { movieId } = context.params
+    const { movie } = await getMovie(movieId)
+    const { crew, cast } = await getMoviesCredit(movieId)
+    return {
+      // Passed to the page component as props
+      props: { movie, crew, cast },
+    }
+  } catch (error) {
+    console.error('Error fetching movie data:', error)
+    return {
+      props: {
+        movie: null,
+        crew: null,
+        cast: null,
+      },
+    }
   }
 }
