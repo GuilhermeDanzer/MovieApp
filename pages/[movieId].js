@@ -1,22 +1,26 @@
-import { useRouter } from "next/router"
-import Layout from "../layout/Layout"
+import { useRouter } from 'next/router'
+import Layout from '../layout/Layout'
 import {
   getMovie,
   getMovies,
   getMoviesCredit,
-} from "../services/moviesServices"
-import MovieDetailCard from "../components/movieDetailCard"
-import ItemCard from "../components/itemCard"
-import { default as homeStyles } from "../styles/Home.module.css"
-import styles from "../styles/MovieDetails.module.css"
+} from '../services/moviesServices'
+import MovieDetailCard from '../components/movieDetailCard'
+import ItemCard from '../components/itemCard'
+import { default as homeStyles } from '../styles/Home.module.css'
+import styles from '../styles/MovieDetails.module.css'
 const Movie = ({ movie, cast, crew }) => {
   const router = useRouter()
 
   if (router.isFallback) return null
 
   const { movieId } = router.query
+  const styleBackground = {
+    '--background': `url(http://image.tmdb.org/t/p/w500${movie.backdrop_path})`,
+  }
+
   const actors = cast
-    ?.filter(person => person.known_for_department === "Acting")
+    ?.filter(person => person.known_for_department === 'Acting')
     .slice(0, 10)
   return (
     <Layout>
@@ -24,7 +28,7 @@ const Movie = ({ movie, cast, crew }) => {
         <div style={{ marginBottom: 20 }}>
           <MovieDetailCard movie={movie} />
         </div>
-        <div className={styles.actorsDiv}>
+        <div className={styles.actorsDiv} style={styleBackground}>
           <h1>Actors</h1>
           <div className={homeStyles.moviesCategoryDiv}>
             {actors?.map(actor => (
@@ -45,7 +49,7 @@ const Movie = ({ movie, cast, crew }) => {
 export default Movie
 
 export async function getStaticPaths() {
-  const { movies } = await getMovies("upcoming")
+  const { movies } = await getMovies('upcoming')
   const paths = movies.map(movie => {
     return { params: { movieId: movie.id.toString() } }
   })

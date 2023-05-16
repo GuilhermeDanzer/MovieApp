@@ -1,19 +1,19 @@
-import React, { forwardRef } from "react"
-import styles from "../styles/ItemCard.module.css"
+import React, { forwardRef } from 'react'
+import styles from '../styles/ItemCard.module.css'
 
-import Link from "next/link"
+import Link from 'next/link'
 const ItemCard = (
-  { title, subTitle, buttonAction = "", buttonText, photoPath },
+  { title, subTitle, buttonAction = '', buttonText, photoPath },
   ref
 ) => {
   const addDefaultSrc = ev => {
-    ev.target.src = "/no-image.png"
-    ev.target.style.width = "200px"
-    ev.target.style.height = "200px"
-    ev.target.style.objectFit = "cover"
+    ev.target.src = '/no-image.png'
+    ev.target.style.width = '200px'
+    ev.target.style.height = '200px'
+    ev.target.style.objectFit = 'cover'
   }
   return (
-    <div className={styles.cardWrapper} ref={ref}>
+    <div className={styles.cardDiv} ref={ref}>
       <div className={styles.divImg}>
         <img
           className={styles.img}

@@ -1,17 +1,17 @@
-import React from "react"
-import styles from "../styles/MovieDetailCard.module.css"
-import { getGenres } from "../utils/getGenres"
+import React from 'react'
+import styles from '../styles/MovieDetailCard.module.css'
+import { getGenres } from '../utils/getGenres'
 const MovieDetailCard = ({ movie }) => {
   const addDefaultSrc = ev => {
-    ev.target.src = "/no-image.png"
-    ev.target.style.width = "200px"
-    ev.target.style.height = "200px"
-    ev.target.style.objectFit = "cover"
+    ev.target.src = '/no-image.png'
+    ev.target.style.width = '200px'
+    ev.target.style.height = '200px'
+    ev.target.style.objectFit = 'cover'
   }
   const movieDate = new Date(movie.release_date)
   const movieGenres = movie.genres.map(genre => genre.name)
   const someStyle = {
-    "--background": `url(http://image.tmdb.org/t/p/w500${movie.backdrop_path})`,
+    '--background': `url(http://image.tmdb.org/t/p/w500${movie.backdrop_path})`,
   }
 
   return (
@@ -32,7 +32,7 @@ const MovieDetailCard = ({ movie }) => {
             <b>Release Date:</b> {movieDate.toLocaleDateString()}
           </span>
           <span>
-            <b>Genres:</b> {movieGenres.join(", ")}
+            <b>Genres:</b> {movieGenres.join(', ')}
           </span>
           <span>
             <b>Movie Duration:</b> {movie.runtime} minutes

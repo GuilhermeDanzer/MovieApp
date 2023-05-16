@@ -1,8 +1,12 @@
-.cardWrapper {
-  margin: 10px;
+.cardDiv {
+  margin: 10px 10px 20px 10px;
   width: 200px;
-}
 
+  transition: all 0.2s ease-in-out;
+}
+.cardDiv:hover {
+  transform: scale(1.1);
+}
 .divImg {
   width: 100%;
   height: 300px;
