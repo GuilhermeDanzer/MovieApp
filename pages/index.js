@@ -1,39 +1,40 @@
-import Head from "next/head"
-import { useState, useRef, useEffect, useCallback } from "react"
-import styles from "../styles/Home.module.css"
-import { getMovies, search } from "../services/moviesServices"
-import ItemCard from "../components/itemCard"
-import Layout from "../layout/Layout"
-import { getGenres } from "../utils/getGenres"
+'use client'
+import Head from 'next/head'
+import { useState, useRef, useEffect, useCallback } from 'react'
+import styles from '../styles/Home.module.css'
+import { getMovies, search } from '../services/moviesServices'
+import ItemCard from '../components/itemCard'
+import Layout from '../layout/Layout'
+import { getGenres } from '../utils/getGenres'
 export default function Home({ propsMovies, current_page, max_page }) {
   const categories = [
     {
-      category: "Upcoming",
-      value: "/upcoming",
+      category: 'Upcoming',
+      value: '/upcoming',
       selected: false,
     },
     {
-      category: "Popular",
-      value: "/popular",
+      category: 'Popular',
+      value: '/popular',
       selected: false,
     },
     {
-      category: "Now Playing",
-      value: "/now_playing",
+      category: 'Now Playing',
+      value: '/now_playing',
       selected: false,
     },
     {
-      category: "Top Rated",
-      value: "/top_rated",
+      category: 'Top Rated',
+      value: '/top_rated',
       selected: false,
     },
   ]
   const [movies, setMovies] = useState(propsMovies)
-  const [moviesEndpoint, setMoviesEndpoint] = useState("/upcoming")
+  const [moviesEndpoint, setMoviesEndpoint] = useState('/upcoming')
   const [currentPage, setCurrentPage] = useState(1)
   const [loading, setLoading] = useState(false)
   const [hasMore, setHasMore] = useState(currentPage < max_page)
-  const [searchTerm, setSearchTerm] = useState("")
+  const [searchTerm, setSearchTerm] = useState('')
 
   const observer = useRef()
   const lastMovieElementRef = useCallback(
@@ -66,7 +67,7 @@ export default function Home({ propsMovies, current_page, max_page }) {
     setLoading(loading => true)
     setMovies(movies => [])
     setMoviesEndpoint(moviesEndpoint => value)
-    setSearchTerm(searchTerm => "")
+    setSearchTerm(searchTerm => '')
     const { movies: fetchedMovies } = await getMovies(value, 1)
 
     setMovies(movies => (fetchedMovies ? fetchedMovies : []))
@@ -138,7 +139,7 @@ export default function Home({ propsMovies, current_page, max_page }) {
                     ref={lastMovieElementRef}
                     key={movie.id}
                     title={movie.title}
-                    subTitle={getGenres(movie.genre_ids).join(", ")}
+                    subTitle={getGenres(movie.genre_ids).join(', ')}
                     photoPath={movie.poster_path}
                     buttonAction={`/${movie.id}`}
                     buttonText="See Details"
@@ -149,7 +150,7 @@ export default function Home({ propsMovies, current_page, max_page }) {
                   <ItemCard
                     key={movie.id}
                     title={movie.title}
-                    subTitle={getGenres(movie.genre_ids).join(", ")}
+                    subTitle={getGenres(movie.genre_ids).join(', ')}
                     photoPath={movie.poster_path}
                     buttonAction={`/${movie.id}`}
                     buttonText="See Details"
@@ -161,8 +162,8 @@ export default function Home({ propsMovies, current_page, max_page }) {
         ) : (
           <div
             style={{
-              display: "flex",
-              justifyContent: "center",
+              display: 'flex',
+              justifyContent: 'center',
               marginTop: 20,
             }}>
             <span className={styles.loader}></span>
@@ -174,7 +175,7 @@ export default function Home({ propsMovies, current_page, max_page }) {
 }
 
 export async function getStaticProps() {
-  const { movies, current_page, max_page } = await getMovies("/upcoming")
+  const { movies, current_page, max_page } = await getMovies('/upcoming')
 
   return {
     props: {

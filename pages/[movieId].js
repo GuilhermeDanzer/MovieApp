@@ -9,6 +9,8 @@ import MovieDetailCard from '../components/movieDetailCard'
 import ItemCard from '../components/itemCard'
 import { default as homeStyles } from '../styles/Home.module.css'
 import styles from '../styles/MovieDetails.module.css'
+import { FaLongArrowAltLeft } from 'react-icons/fa'
+
 const Movie = ({ movie, cast, crew }) => {
   const router = useRouter()
 
@@ -25,6 +27,12 @@ const Movie = ({ movie, cast, crew }) => {
   return (
     <Layout>
       <div style={{ padding: 20 }}>
+        <FaLongArrowAltLeft
+          size={80}
+          color="white"
+          cursor="pointer"
+          onClick={() => router.back()}
+        />
         <div style={{ marginBottom: 20 }}>
           <MovieDetailCard movie={movie} />
         </div>
