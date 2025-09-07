@@ -10,22 +10,22 @@ export default function Home({ propsMovies, current_page, max_page }) {
   const categories = [
     {
       category: 'Upcoming',
-      value: '/upcoming',
+      value: 'upcoming',
       selected: false,
     },
     {
       category: 'Popular',
-      value: '/popular',
+      value: 'popular',
       selected: false,
     },
     {
       category: 'Now Playing',
-      value: '/now_playing',
+      value: 'now_playing',
       selected: false,
     },
     {
       category: 'Top Rated',
-      value: '/top_rated',
+      value: 'top_rated',
       selected: false,
     },
   ]
