@@ -30,7 +30,7 @@ export default function Home({ propsMovies, current_page, max_page }) {
     },
   ]
   const [movies, setMovies] = useState(propsMovies)
-  const [moviesEndpoint, setMoviesEndpoint] = useState('/upcoming')
+  const [moviesEndpoint, setMoviesEndpoint] = useState('upcoming')
   const [currentPage, setCurrentPage] = useState(1)
   const [loading, setLoading] = useState(false)
   const [hasMore, setHasMore] = useState(currentPage < max_page)
@@ -175,7 +175,7 @@ export default function Home({ propsMovies, current_page, max_page }) {
 }
 
 export async function getStaticProps() {
-  const { movies, current_page, max_page } = await getMovies('/upcoming')
+  const { movies, current_page, max_page } = await getMovies('upcoming')
 
   return {
     props: {
